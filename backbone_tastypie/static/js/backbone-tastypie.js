@@ -133,6 +133,7 @@
 	Backbone.Collection.prototype.parse = function( data ) {
 		if ( data && data.meta ) {
 			this.meta = data.meta;
+			this.totalCount = this.meta.total_count;
 		}
 
 		return data && data.objects || data;
@@ -159,6 +160,8 @@
 
 		return url || null;
 	};
+
+	Backbone.Collection.prototype.totalCount = 0;
 
 	var addSlash = function( str ) {
 		return str + ( ( str.length > 0 && str.charAt( str.length - 1 ) === '/' ) ? '' : '/' );
