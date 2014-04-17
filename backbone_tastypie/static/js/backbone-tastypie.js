@@ -41,6 +41,14 @@
 	Backbone.sync = function( method, model, options ) {
 		var headers = {};
 
+        	options || (options = {});
+        	if (!options.crossDomain) {
+            		options.crossDomain = true;
+        	}
+        	if (!options.xhrFields) {
+            		options.xhrFields = {withCredentials:true};
+        	}
+
 		if ( Backbone.Tastypie.apiKey && Backbone.Tastypie.apiKey.username ) {
 			headers[ 'Authorization' ] = 'ApiKey ' + Backbone.Tastypie.apiKey.username + ':' + Backbone.Tastypie.apiKey.key;
 		}
